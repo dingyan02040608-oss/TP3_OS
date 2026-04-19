@@ -1,17 +1,17 @@
 Markdown
 # Polytech OS User - TP3 : BICEPS (Bel Interpréteur de Commandes)
 
-**Auteurs :** Yan et YiHan
+**Auteurs :** Yan DING et YiHan HU
 
-## 📖 Description du Projet
+## Description du Projet
 Ce projet est la réalisation de la partie 3 du TP d'OS User. Il s'agit d'une évolution de notre programme `biceps` (Bel Interpréteur de Commandes des Elèves de Polytech Sorbonne), intégrant le protocole BEUIP (BEUI over IP). 
 
 Conformément aux consignes, nous avons réalisé :
 - **Étape 1 :** Implémentation du multi-threading pour faire cohabiter l'interpréteur de commandes et le serveur UDP dans le même processus, résolvant ainsi les failles de sécurité (partage de la table des contacts via mutex).
-- **Étape 2 (2.2) :** Remplacement du tableau fixe par une **liste chaînée** dynamique pour gérer les utilisateurs présents sur le réseau. (La partie 2.1 a été sautée comme autorisé).
-- **Étape 3 (Bonus) :** Mise en place d'un thread serveur TCP permettant le partage et le téléchargement de fichiers entre utilisateurs via les commandes `beuip ls` et `beuip get`.
+- **Étape 2 :** Remplacement du tableau fixe par une **liste chaînée** dynamique pour gérer les utilisateurs présents sur le réseau. (La partie 2.1 a été sautée comme autorisé).
+- **Étape 3 :** Mise en place d'un thread serveur TCP permettant le partage et le téléchargement de fichiers entre utilisateurs via les commandes `beuip ls` et `beuip get`.
 
-## 🗂️ Structure du Code
+## Structure du Code
 
 Afin de garantir la lisibilité et la maintenabilité (< 20 lignes par fonction en moyenne), le code est découpé de manière modulaire :
 
@@ -23,7 +23,7 @@ Afin de garantir la lisibilité et la maintenabilité (< 20 lignes par fonction 
 * **`shared.h`** : Fichier d'en-tête global contenant les définitions des structures (liste chaînée `struct elt`), les variables globales partagées (`mutex`, flags de threads) et l'adresse de broadcast (`BCAST_ADDR "192.168.88.255"`).
 * **`Makefile`** : Gère la compilation stricte et les tests de fuites mémoire.
 
-## 🛠️ Compilation et Exécution
+## Compilation et Exécution
 
 Le projet compile strictement avec les options `-Wall -Wextra -Werror` (aucun warning toléré).
 
@@ -45,7 +45,7 @@ Pour supprimer tous les exécutables et fichiers objets :
 
 Bash
 make clean
-🚀 Exemples d'utilisation
+Exemples d'utilisation
 Une fois dans le shell biceps :
 
 Bash
@@ -62,7 +62,7 @@ beuip message YiHan Salut, ça va ?
 # Envoyer un message à tout le monde
 beuip message all Bonjour le réseau !
 
-# [Bonus] Lister les fichiers du répertoire "reppub" d'un utilisateur distant
+# Lister les fichiers du répertoire "reppub" d'un utilisateur distant
 beuip ls YiHan
 
 # [Bonus] Télécharger un fichier distant dans votre dossier local "reppub"
